@@ -1,0 +1,7 @@
+theme = "native"
+icons = "awesome5"
+
+[[block]]
+block = "time"
+interval = 1
+format = "%a %d/%m %R"
