@@ -97,10 +97,10 @@ bindsym $mod+t layout tabbed
 bindsym $mod+d layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+apostrophe floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+apostrophe focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -178,12 +178,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ## Application Launcher
-set $mode_launcher Launch: [f]irefox [m]essages [n]otes [z]oom
+set $mode_launcher Launch: [b]rowser [c]alculator [f]iles [i]ncognito [m]essages [n]otes [z]oom
 mode "$mode_launcher" {
 	
-    bindsym c "exec --no-startup-id /usr/bin/gnome-calculator; mode default"
-	bindsym f "exec --no-startup-id /usr/bin/firefox; mode default"
-    bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
+	bindsym b "exec --no-startup-id /usr/bin/firefox; mode default"
+    	bindsym c "exec --no-startup-id /usr/bin/gnome-calculator; mode default"
+    	bindsym f "exec --no-startup-id /usr/bin/thunar; mode default"
+    	bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
 	bindsym m "exec --no-startup-id /usr/bin/rambox; mode default"
 	bindsym n "exec --no-startup-id /usr/bin/obsidian; mode default"
 	bindsym z "exec --no-startup-id /usr/bin/zoom; mode default"
@@ -206,12 +207,16 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+## Focus zoom window
+bindsym $mod+z [class="zoom"] focus
+
 ####################
 ## Windows & Display
 ####################
 
 for_window [class="firefox"] move to workspace $ws4
 for_window [class="Rambox"] move to workspace $ws3
+for_window [class="zoom"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws2
 for_window [class="Pavucontrol"] move to workspace $ws2
@@ -297,10 +302,10 @@ bar {
 # Window Layout
 gaps inner 10
 gaps outer 0
-for_window [all] border pixel 1
+for_window [all] border pixel 2
 hide_edge_borders smart
 smart_gaps on
-#floating_maximum_size 1720 x 860
+floating_maximum_size 1500 x 900
 for_window [class="zoom"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -318,7 +323,7 @@ for_window [class="Gnome-calculator"] floating enable
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id betterlockscreen -u $bgimage
 #exec --no-startup-id "xset 180 120; xss-lock -n $HOME/.config/scripts/ask-to-rest.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
-exec --no-startup-id xss-lock --transfer-sleep-lock -- "$HOME/.config/scripts/lock.sh"
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- "$HOME/.config/scripts/lock.sh"
 
 # Display & Output
 exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 

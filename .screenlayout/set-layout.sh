@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 connected_hdmi=$(cat /sys/class/drm/card0/*HDMI*/status | grep -c ' connected')
 #connected_hdmi=$( xrandr | grep ' connected' | grep 'HDMI' | wc -l )
 
