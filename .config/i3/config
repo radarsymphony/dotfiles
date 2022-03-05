@@ -326,7 +326,7 @@ for_window [class="Gnome-calculator"] floating enable
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- "$HOME/.config/scripts/lock.sh"
 
 # Display & Output
-exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 
+exec --no-startup-id $HOME/.screenlayout/set-layout.sh 
 
 # Autostart services 
 #exec dex -a
@@ -355,12 +355,12 @@ exec --no-startup-id /usr/bin/flameshot
 
 # Window Compositor
 #exec --no-startup-id /usr/bin/picom -b
-exec --no-startup-id "sleep 0.5s; /usr/bin/picom -b"
+exec_always --no-startup-id "pkill picom; /usr/bin/picom --experimental-backends"
 
 # Display Wallpaper
 # exec --no-startup-id /usr/bin/wal -i $bgimage --backend colorz
 #exec --no-startup-id /usr/bin/wal -R
-exec --no-startup-id "sleep 1s; /usr/bin/wal -R"
+exec_always --no-startup-id "sleep 0.25s; /usr/bin/wal -R"
 
 #exec $HOME/.config/scripts/fix-display.sh
 
