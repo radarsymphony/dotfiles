@@ -178,11 +178,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ## Application Launcher
-set $mode_launcher Launch: [b]rowser [c]alculator [f]iles [i]ncognito [m]essages [n]otes [z]oom
+set $mode_launcher Launch: [b]rowser [c]alculator [e]ditor [f]iles [i]ncognito [m]essages [n]otes [z]oom
 mode "$mode_launcher" {
 	
 	bindsym b "exec --no-startup-id /usr/bin/firefox; mode default"
     	bindsym c "exec --no-startup-id /usr/bin/gnome-calculator; mode default"
+	bindsym e "exec --no-startup-id /usr/bin/code; mode default"
     	bindsym f "exec --no-startup-id /usr/bin/thunar; mode default"
     	bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
 	bindsym m "exec --no-startup-id /usr/bin/rambox; mode default"
@@ -243,9 +244,9 @@ set_from_resource $color6 i3wm.color6 #f0f0f0
 set_from_resource $color7 i3wm.color7 #f0f0f0
 
 # class                 border  	backgr. 	text 		indicator 	child_border
-client.focused          $color4     	$color4     	$fg  		$color1      	$color4
-client.focused_inactive $color4     	$bg     	$color1		$bg      	$bg
-client.unfocused        $color4     	$bg     	$fg		$bg       	$bg
+client.focused          $color4     	$color4     	$fg  		$color1      	$color7
+client.focused_inactive $color4     	$bg     	$color1		$bg     	#00000000 
+client.unfocused        $color4     	$bg     	$fg		$bg		#00000000	
 client.urgent           $color1     	$color1     	$fg  		$color1       	$color1
 client.placeholder      $color4     	$color4     	$fg  		$color1      	$color4
 client.background       $bg
@@ -302,7 +303,7 @@ bar {
 # Window Layout
 gaps inner 10
 gaps outer 0
-for_window [all] border pixel 2
+for_window [all] border pixel 1 
 hide_edge_borders smart
 smart_gaps on
 floating_maximum_size 1500 x 900
