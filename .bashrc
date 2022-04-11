@@ -3,6 +3,7 @@
 #
 
 #set -o vi
+export EDITOR=vim
 
 ## Aliases
 alias ls='ls --color=auto'

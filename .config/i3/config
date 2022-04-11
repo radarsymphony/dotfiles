@@ -84,6 +84,7 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+g split h
+bindsym $mod+Shift+p exec "notify-send Hello, i3"
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -217,7 +218,7 @@ bindsym $mod+z [class="zoom"] focus
 
 for_window [class="firefox"] move to workspace $ws4
 for_window [class="Rambox"] move to workspace $ws3
-for_window [class="zoom"] move to workspace $ws3
+#for_window [class="zoom"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws2
 for_window [class="Pavucontrol"] move to workspace $ws2
