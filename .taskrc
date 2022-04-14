@@ -45,3 +45,4 @@ uda.iid.type=numeric
 uda.iid.label=IssueID
 uda.ipath.type=string
 uda.ipath.label=IssuePath
+news.version=2.6.0
