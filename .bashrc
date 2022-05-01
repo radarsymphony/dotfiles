@@ -9,7 +9,7 @@ export EDITOR=vim
 alias ls='ls --color=auto'
 alias ssh='kitty +kitten ssh'
 
-alias sdcsv='soffice $(timew report csv.sh :week SD)'
+alias sdlog='soffice $(timew report csv.sh :week)'
 
 ## Dotfile Management
 alias dotfile='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
