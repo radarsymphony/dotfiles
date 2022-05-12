@@ -144,6 +144,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws0
 # (effectively toggles when you only have two outputs)
 bindsym $mod+p move workspace to output right
 
+# Toggle between last two active workspaces
+bindsym $mod+w workspace back_and_forth
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -189,14 +192,14 @@ bindsym $mod+r mode "resize"
 set $mode_launcher Launch: [b]rowser [c]alculator [e]ditor [f]iles [i]ncognito [m]essages [n]otes [z]oom
 mode "$mode_launcher" {
 	
-	bindsym b "exec --no-startup-id /usr/bin/firefox; mode default"
-    	bindsym c "exec --no-startup-id /usr/bin/gnome-calculator; mode default"
-	bindsym e "exec --no-startup-id /usr/bin/code; mode default"
-    	bindsym f "exec --no-startup-id /usr/bin/thunar; mode default"
-    	bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
-	bindsym m "exec --no-startup-id /usr/bin/rambox; mode default"
-	bindsym n "exec --no-startup-id /usr/bin/obsidian; mode default"
-	bindsym z "exec --no-startup-id /usr/bin/zoom; mode default"
+	bindsym b exec --no-startup-id "/usr/bin/firefox; mode default"
+    	bindsym c exec --no-startup-id "/usr/bin/gnome-calculator; mode default"
+	bindsym e exec --no-startup-id "/usr/bin/code; mode default"
+    	bindsym f exec --no-startup-id "/usr/bin/thunar; mode default"
+    	bindsym i exec --no-startup-id "/usr/bin/chromium --incognito; mode default"
+	bindsym m exec --no-startup-id "/usr/bin/rambox; mode default"
+	bindsym n exec --no-startup-id "/usr/bin/obsidian; mode default"
+	bindsym z exec --no-startup-id "/usr/bin/zoom; mode default"
 
         # back to normal: Enter or Escape or $mod+p
         bindsym Return mode "default"
@@ -211,17 +214,22 @@ bindsym $mod+l mode "$mode_launcher"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status; notify-send -e --expire-time=700 vol"
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+## Notifications
+bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-center)"
+
 ## ZOOM --- Focus zoom window
-for_window [class="zoom"] floating enable; move scratchpad
-for_window [title="Zoom Meeting"] mark zoom_meeting
-assign [class='zoom'] output primary
-#bindsym $mod+z exec --no-startup-id $HOME/.config/i3/bin/zoom_scratchpad_setup.sh 'zoom_mark'
-bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
+#for_window [class="zoom"] floating enable; move scratchpad
+#for_window [title="Zoom Meeting"] mark zoom_meeting
+#assign [class='zoom'] output primary
+#bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
+for_window [class="zoom"] floating enable 
+bindsym $mod+z [class="zoom"] focus
+
 
 ####################
 ## Windows & Display
@@ -234,6 +242,7 @@ for_window [class="Thunderbird"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws2
 for_window [class="Pavucontrol"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws5
+
 
 focus_on_window_activation smart
 
@@ -322,7 +331,7 @@ floating_maximum_size 1500 x 900
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [class="systemsettings"] floating enable
-for_window [class="Gnome-calculator"] floating enable
+for_window [class="gnome-calculator"] floating enable
 
 #################
 ## USER INTERFACE
@@ -336,12 +345,12 @@ for_window [class="Gnome-calculator"] floating enable
 #exec --no-startup-id betterlockscreen -u $bgimage
 #exec --no-startup-id "xset 180 120; xss-lock -n $HOME/.config/scripts/ask-to-rest.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- "$HOME/.config/scripts/lock.sh"
+exec --no-startup-id "xset s 300 120; xss-lock -n $HOME/.config/scripts/notify-sleep.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
 
 # Display & Output
-exec --no-startup-id $HOME/.screenlayout/set-layout.sh 
+exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 
 
-# Autostart services 
-#exec dex -a
+exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
 
 # Notification Manager
 exec --no-startup-id /usr/bin/deadd-notification-center
@@ -365,15 +374,6 @@ exec --no-startup-id /usr/bin/redshift-gtk
 # Screenshot tool
 exec --no-startup-id /usr/bin/flameshot
 
-# Window Compositor
-#exec --no-startup-id /usr/bin/picom -b
-exec_always --no-startup-id "pkill picom; /usr/bin/picom --experimental-backends"
-
-# Display Wallpaper
-# exec --no-startup-id /usr/bin/wal -i $bgimage --backend colorz
-#exec --no-startup-id /usr/bin/wal -R
-exec_always --no-startup-id "sleep 0.25s; /usr/bin/wal -R"
-
-#exec $HOME/.config/scripts/fix-display.sh
-
+# xbanish to hide mouse cursor when typing
+exec --no-startup-id /usr/bin/xbanish -i $mod -s
 

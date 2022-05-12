@@ -15,11 +15,5 @@ if [[ $(cat "${cache}") != "${connected_hdmi}" ]]; then
 
     echo "${connected_hdmi}" > "${cache}"
 
-    ## Refresh backdrop and colour after new layout
-    if command -v /usr/bin/wal &> /dev/null
-    then
-    	    /usr/bin/wal -R
-    fi
-
 fi
 

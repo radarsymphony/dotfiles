@@ -1,5 +1,15 @@
 #!/bin/bash
-sleep 1s
-/usr/bin/picom -b
-sleep 1s
-/usr/bin/wal -R
+
+pkill picom &
+
+wait $!
+
+/usr/bin/wal -R &
+
+wait $!
+
+$HOME/.fehbg &
+
+wait $!
+
+/usr/bin/picom --experimental-backends -b

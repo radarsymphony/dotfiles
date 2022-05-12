@@ -1,1 +1,1 @@
-/usr/bin/betterlockscreen --dim 40 --blur 30 --off 3 --display 1 --lock -- -n
+/usr/bin/betterlockscreen --dim 70 --blur 40 --off 60 --display 1 --lock

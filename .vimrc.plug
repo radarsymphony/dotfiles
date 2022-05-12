@@ -1,0 +1,12 @@
+call plug#begin('~/.vim/plugged')
+
+"Fugitive Vim Github Wrapper
+Plug 'tpope/vim-fugitive'
+
+"Plug 'dylanaraps/wal.vim'
+
+Plug 'preservim/NERDTree'
+
+Plug 'airblade/vim-gitgutter'
+
+call plug#end()

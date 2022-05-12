@@ -11,6 +11,9 @@ alias ssh='kitty +kitten ssh'
 
 alias sdlog='soffice $(timew report csv.sh :week)'
 
+## Task & Time warrior aliases
+alias tsum='timew summary :id :anno'
+
 ## Dotfile Management
 alias dotfile='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
