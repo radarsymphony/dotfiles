@@ -53,6 +53,8 @@ bindsym $mod+Return exec kitty
 
 # Show or create the kitty scratchpad window.
 bindsym $mod+k exec --no-startup-id $HOME/.config/i3/bin/i3_scratchpad_show_or_create.sh 'quake-kitty' '/usr/bin/kitty /usr/bin/bash'
+for_window [con_mark="quake-kitty"] resize set 1200 800
+for_window [con_mark="quake-kitty"] move [absolute] position center
 
 # Add Scratchpad Controls
 bindsym $mod+j scratchpad show
@@ -64,6 +66,8 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+m exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+Shift+m exec --no-startup-id "rofi -show window" 
+bindsym $mod+Alt+m exec --no-startup-id $HOME/.config/scripts/displays.sh
 
 # change focus
 bindsym $mod+n focus left
@@ -91,7 +95,6 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+g split h
-bindsym $mod+Shift+p exec "notify-send Hello, i3"
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -192,19 +195,19 @@ bindsym $mod+r mode "resize"
 set $mode_launcher Launch: [b]rowser [c]alculator [e]ditor [f]iles [i]ncognito [m]essages [n]otes [z]oom
 mode "$mode_launcher" {
 	
-	bindsym b exec --no-startup-id "/usr/bin/firefox; mode default"
-    	bindsym c exec --no-startup-id "/usr/bin/gnome-calculator; mode default"
-	bindsym e exec --no-startup-id "/usr/bin/code; mode default"
-    	bindsym f exec --no-startup-id "/usr/bin/thunar; mode default"
-    	bindsym i exec --no-startup-id "/usr/bin/chromium --incognito; mode default"
-	bindsym m exec --no-startup-id "/usr/bin/rambox; mode default"
-	bindsym n exec --no-startup-id "/usr/bin/obsidian; mode default"
-	bindsym z exec --no-startup-id "/usr/bin/zoom; mode default"
+	bindsym b "exec --no-startup-id /usr/bin/firefox; mode default"
+    	bindsym c "exec --no-startup-id /usr/bin/gnome-calculator; mode default"
+	bindsym e "exec --no-startup-id /usr/bin/code; mode default"
+    	bindsym f "exec --no-startup-id /usr/bin/thunar; mode default"
+    	bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
+	bindsym m "exec --no-startup-id /usr/bin/rambox; mode default"
+	bindsym n "exec --no-startup-id /usr/bin/obsidian; mode default"
+	bindsym z "exec --no-startup-id /usr/bin/zoom; mode default"
 
         # back to normal: Enter or Escape or $mod+p
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+p mode "default"
+        bindsym $mod+l mode "default"
 }
 bindsym $mod+l mode "$mode_launcher"
 
