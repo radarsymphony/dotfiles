@@ -67,7 +67,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+m exec --no-startup-id "rofi -modi drun,run -show drun"
 bindsym $mod+Shift+m exec --no-startup-id "rofi -show window" 
-bindsym $mod+Alt+m exec --no-startup-id $HOME/.config/scripts/displays.sh
+bindsym $mod+Mod1+m exec --no-startup-id $HOME/.config/scripts/displays.sh
 
 # change focus
 bindsym $mod+n focus left
