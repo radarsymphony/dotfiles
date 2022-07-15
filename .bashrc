@@ -7,9 +7,7 @@ export EDITOR=vim
 
 ## Aliases
 alias ls='ls --color=auto'
-alias ssh='kitty +kitten ssh'
-
-alias sdlog='soffice $(timew report csv.sh :week)'
+#alias ssh='kitty +kitten ssh'
 
 ## Task & Time warrior aliases
 alias tsum='timew summary :id :anno'
@@ -33,7 +31,19 @@ pkgremove() {
 }
 
 scan() {
-	ls -a | fzf --preview 'ls -A {}' | xargs realpath
+  ls -a | fzf --preview 'ls -A {}' | xargs realpath
+}
+
+## Create a popup timer
+pom() {
+  time_msg() {  
+    #sleep "${1}" && notify-send --urgency=critical --expire-time=6000 --app-name=TaskWarrior "Time's Up!" "Review your tasks..."
+    sleep "${1}" && zenity --warning --width=400 --height=200 --text="\n\n\nTimes's Up! Review your tasks...  " --ok-label="Ok" 
+    #zenity --notification --text="Time's Up!"
+  }
+  #kill $(cat /tmp/pom.pid)
+  time_msg "${1:-30m}"
+  #echo "$!" > /tmp/pom.pid
 }
 
 # Set Custom Colour Scheme for each new Terminal
@@ -70,6 +80,8 @@ __prompt_command() {
 ## Create a landing page for Bash
 pfetch
 
+## Export Variables
+export XLSX_FILE=TRUE
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi

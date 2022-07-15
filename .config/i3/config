@@ -231,7 +231,9 @@ bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-cen
 #assign [class='zoom'] output primary
 #bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
 for_window [class="zoom"] floating enable 
-bindsym $mod+z [class="zoom"] focus
+for_window [title="Zoom Meeting"] floating enable 
+for_window [title="Zoom - Free Account"] floating enable 
+bindsym $mod+z [title="Zoom Meeting"] focus
 
 
 ####################
@@ -332,6 +334,7 @@ hide_edge_borders smart
 smart_gaps on
 floating_maximum_size 1500 x 900
 for_window [window_role="pop-up"] floating enable
+#no_focus [window_role="pop-up"]
 for_window [window_role="task_dialog"] floating enable
 for_window [class="systemsettings"] floating enable
 for_window [class="gnome-calculator"] floating enable
