@@ -242,7 +242,7 @@ bindsym $mod+z [title="Zoom Meeting"] focus
 ####################
 
 for_window [class="firefox"] move to workspace $ws4
-for_window [class="Rambox"] move to workspace $ws3
+for_window [class="ferdium"] move to workspace $ws3
 #for_window [class="zoom"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws2
