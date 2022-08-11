@@ -7,6 +7,7 @@ export EDITOR=vim
 
 ## Aliases
 alias ls='ls --color=auto'
+alias ncdu='ncdu --exclude .snapshots'
 #alias ssh='kitty +kitten ssh'
 
 ## Task & Time warrior aliases
@@ -50,9 +51,6 @@ pom() {
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
 
-# Add Paths to PATH
-export PATH="${HOME}/.local/bin/:$PATH"
-
 ## Bash Prompt Configuration
 PROMPT_COMMAND=__prompt_command    # Function to generate PS1 after CMDs
 
@@ -76,6 +74,7 @@ __prompt_command() {
 
     PS1+="[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]$ "
 }
+export PATH="${PATH}:/home/grey/.local/bin"
 
 ## Create a landing page for Bash
 pfetch
@@ -86,3 +85,5 @@ export XLSX_FILE=TRUE
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+export TERM=xterm-256color

@@ -200,7 +200,7 @@ mode "$mode_launcher" {
 	bindsym e "exec --no-startup-id /usr/bin/code; mode default"
     	bindsym f "exec --no-startup-id /usr/bin/thunar; mode default"
     	bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
-	bindsym m "exec --no-startup-id /usr/bin/rambox; mode default"
+	bindsym m "exec --no-startup-id /usr/bin/ferdium; mode default"
 	bindsym n "exec --no-startup-id /usr/bin/obsidian; mode default"
 	bindsym z "exec --no-startup-id /usr/bin/zoom; mode default"
 
@@ -232,6 +232,7 @@ bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-cen
 #bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
 for_window [class="zoom"] floating enable 
 for_window [title="Zoom Meeting"] floating enable 
+no_focus [title="Zoom Meeting"]
 for_window [title="Zoom - Free Account"] floating enable 
 bindsym $mod+z [title="Zoom Meeting"] focus
 
@@ -360,9 +361,6 @@ exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
 
 # Notification Manager
 exec --no-startup-id /usr/bin/deadd-notification-center
-
-# Messaging App
-#exec --no-startup-id /opt/Rambox/rambox
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
