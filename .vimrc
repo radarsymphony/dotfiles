@@ -16,6 +16,9 @@ set updatetime=100
 " Status Bar
 set laststatus=2
 
+" Set tab spacing
+set tabstop=4
+
 " Shortcuts to Toggle or add functionality
 map <leader>f :NERDTreeToggle<CR>
 map <leader>n :set number relativenumber<CR>

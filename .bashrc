@@ -5,13 +5,17 @@
 #set -o vi
 export EDITOR=vim
 
+## Import bashrc files
+source ~/.bashrc.d/*
+
 ## Aliases
 alias ls='ls --color=auto'
-alias ncdu='ncdu --exclude .snapshots'
+alias ncdu='ncdu --exclude .snapshots --exclude /proc'
 #alias ssh='kitty +kitten ssh'
 
 ## Task & Time warrior aliases
 alias tsum='timew summary :id :anno'
+alias tl='task priority.any: or +MONTH or +next'
 
 ## Dotfile Management
 alias dotfile='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
