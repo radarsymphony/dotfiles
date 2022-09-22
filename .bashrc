@@ -89,15 +89,16 @@ __prompt_command() {
     local BBlu='\[\e[0;34m\]'
     local Pur='\[\e[0;35m\]'
 
-    PS1="${Gre}\$([ \j -gt 0 ] && echo [\jz])${RCol}"
+    PS1="${Gre}\$([ \j -gt 0 ] && echo [\jz])${RCol}[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]"
+
 
     if [ $EXIT != 0 ] && [ $EXIT -le 128 ] ; then
-        PS1+="${Red}[${EXIT}]${RCol}"        # Add red if exit code non 0
+        PS1+="${Red} ${EXIT} ${RCol}"        # Add red if exit code non 0
     else
 		PS1+="${RCol}"	
     fi
 
-    PS1+="[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]$ "
+    PS1+="$ "
 }
 
 ## Create a landing page for Bash
