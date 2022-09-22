@@ -1,28 +1,32 @@
-#
-# ~/.bashrc
-#
+## BASHRC
+## -------------------------------------------
 
-#set -o vi
-export EDITOR=vim
+## IMPORT BASHRC FILES
+## -------------------------------------------
 
-## Import bashrc files
 source ~/.bashrc.d/*
 
-## Aliases
+## ALIASES
+## -------------------------------------------
+
 alias ls='ls --color=auto'
 alias ncdu='ncdu --exclude .snapshots --exclude /proc'
 #alias ssh='kitty +kitten ssh'
 
-## Task & Time warrior aliases
-alias tsum='timew summary :id :anno'
-alias tl='task priority.any: or +MONTH or +next'
-
 ## Dotfile Management
 alias dotfile='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+## Task & Time warrior
+alias tsum='timew summary :id :anno'
+alias tl='task priority.any: or +MONTH or +next'
+
+## Docker
 #alias ddbash='docker exec -it $( docker container ls --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}' | fzf | awk '{print $1}' ) bash'
 
-## Package Management Functions
+## FUNCTIONS
+## -------------------------------------------
+
+## Package Management 
 pkgbrowse() {
   pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
 }
@@ -42,16 +46,33 @@ scan() {
 ## Create a popup timer
 pom() {
   time_msg() {  
-    #sleep "${1}" && notify-send --urgency=critical --expire-time=6000 --app-name=TaskWarrior "Time's Up!" "Review your tasks..."
     sleep "${1}" && zenity --warning --width=400 --height=200 --text="\n\n\nTimes's Up! Review your tasks...  " --ok-label="Ok" 
-    #zenity --notification --text="Time's Up!"
   }
-  #kill $(cat /tmp/pom.pid)
   time_msg "${1:-30m}"
-  #echo "$!" > /tmp/pom.pid
 }
 
-# Set Custom Colour Scheme for each new Terminal
+## EXPORT VARIABLES
+## -------------------------------------------
+
+## Taskwarrior & Timewarrior
+export XLSX_FILE=TRUE
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
+
+## Exported Variables
+export PATH="${PATH}:/home/grey/.local/bin"
+export EDITOR=vim
+export TERM=xterm-256color
+
+## CUSTOMIZE TERMINAL
+## -------------------------------------------
+
+## Enable Vi-style shell navigation
+#set -o vi
+
+## Set Custom Colour Scheme 
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
 
@@ -60,34 +81,25 @@ PROMPT_COMMAND=__prompt_command    # Function to generate PS1 after CMDs
 
 __prompt_command() {
     local EXIT="$?"                # This needs to be first
-    PS1=""
 
     local RCol='\[\e[0m\]'
-
-    local Red='\[\e[0;31m\]'
-    local Gre='\[\e[0;32m\]'
-    local BYel='\[\e[1;33m\]'
-    local BBlu='\[\e[1;34m\]'
+    local Red='\[\e[1;31m\]'
+    local Gre='\[\e[2;32m\]'
+    local BYel='\[\e[0;33m\]'
+    local BBlu='\[\e[0;34m\]'
     local Pur='\[\e[0;35m\]'
 
-    if [ $EXIT != 0 ]; then
-        PS1+="${Red}[ ${EXIT} ]${RCol}"        # Add red if exit code non 0
+    PS1="${Gre}\$([ \j -gt 0 ] && echo [\jz])${RCol}"
+
+    if [ $EXIT != 0 ] && [ $EXIT -le 128 ] ; then
+        PS1+="${Red}[${EXIT}]${RCol}"        # Add red if exit code non 0
     else
-	PS1+="${RCol}"	
+		PS1+="${RCol}"	
     fi
 
     PS1+="[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]$ "
 }
-export PATH="${PATH}:/home/grey/.local/bin"
 
 ## Create a landing page for Bash
 pfetch
 
-## Export Variables
-export XLSX_FILE=TRUE
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
-
-export TERM=xterm-256color
