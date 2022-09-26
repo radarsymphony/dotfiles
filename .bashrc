@@ -11,6 +11,7 @@ source ~/.bashrc.d/*
 
 alias ls='ls --color=auto'
 alias ncdu='ncdu --exclude .snapshots --exclude /proc'
+alias top='htop'
 #alias ssh='kitty +kitten ssh'
 
 ## Dotfile Management
@@ -89,7 +90,7 @@ __prompt_command() {
     local BBlu='\[\e[0;34m\]'
     local Pur='\[\e[0;35m\]'
 
-    PS1="${Gre}\$([ \j -gt 0 ] && echo [\jz])${RCol}[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]"
+    PS1="${Gre}\$([ \j -gt 0 ] && echo '\jz ')${RCol}[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]"
 
 
     if [ $EXIT != 0 ] && [ $EXIT -le 128 ] ; then

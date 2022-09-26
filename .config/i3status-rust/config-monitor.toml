@@ -2,6 +2,11 @@ theme = "native"
 icons = "awesome5"
 
 [[block]]
+block = "external_ip"
+format = "{ip} {country_code}"
+
+[[block]]
 block = "time"
 interval = 1
-format = "%a %d/%m %R"
+format = "%a %F %R"
+on_click = "zenity --calendar --ok-label=Select --date-format=%F"
