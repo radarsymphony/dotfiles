@@ -62,5 +62,5 @@ primary_only = true
 [[block]]
 block = "time"
 interval = 1
-format = "%a %F %R"
-on_click = "zenity --calendar --ok-label=Select --date-format=%F"
+format = "%a %b %e %R"
+on_click = "~/.config/scripts/calendar.sh"
