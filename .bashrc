@@ -88,9 +88,9 @@ __prompt_command() {
     local Gre='\[\e[2;32m\]'
     local BYel='\[\e[0;33m\]'
     local BBlu='\[\e[0;34m\]'
-    local Pur='\[\e[0;35m\]'
+    local Pur='\[\e[1;35m\]'
 
-    PS1="${Gre}\$([ \j -gt 0 ] && echo '\jz ')${RCol}[${BBlu}\u${RCol}@${BBlu}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]"
+    PS1="${Gre}\$([ \j -gt 0 ] && echo '\jz ')${RCol}[${Pur}\u${RCol}@${Pur}\h ${RCol}\$(date +%R) ${BBlu}\W${RCol}]"
 
 
     if [ $EXIT != 0 ] && [ $EXIT -le 128 ] ; then
