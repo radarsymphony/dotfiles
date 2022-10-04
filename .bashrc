@@ -64,7 +64,8 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 
 ## Exported Variables
 export PATH="${PATH}:/home/grey/.local/bin"
-export EDITOR=vim
+export VISUAL=vim
+export EDITOR="$VISUAL"
 export TERM=xterm-256color
 
 ## CUSTOMIZE TERMINAL

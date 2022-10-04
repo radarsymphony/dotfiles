@@ -67,7 +67,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+l exec --no-startup-id "rofi -modi drun,run -show drun"
 bindsym $mod+Shift+m exec --no-startup-id "rofi -show window" 
-bindsym $mod+Mod1+m exec --no-startup-id $HOME/.config/scripts/displays.sh
+bindsym $mod+Mod1+m exec --no-startup-id "$HOME/.config/scripts/displays.sh; reload"
 
 # change focus
 bindsym $mod+n focus left
@@ -234,7 +234,7 @@ bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-cen
 #assign [class='zoom'] output primary
 #bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
 for_window [class="zoom"] floating enable 
-for_window [title="Zoom Meeting"] floating enable 
+#for_window [title="Zoom Meeting"] floating enable 
 no_focus [title="Zoom Meeting"]
 for_window [title="Zoom - Free Account"] floating enable 
 bindsym $mod+z [title="Zoom Meeting"] focus
@@ -272,10 +272,10 @@ set_from_resource $color5 i3wm.color5 #f0f0f0
 set_from_resource $color6 i3wm.color6 #f0f0f0
 set_from_resource $color7 i3wm.color7 #f0f0f0
 
-# class                 border  	backgr. 	text 		indicator 	child_border
+# class                 border  		backgr. 		text 		indicator 		child_border
 client.focused          $color4     	$color4     	$fg  		$color1      	$color7
-client.focused_inactive $color4     	$bg     	$color1		$bg     	#00000000 
-client.unfocused        $color4     	$bg     	$fg		$bg		#00000000	
+client.focused_inactive $color4     	$bg     		$color1		$bg     		#00000000 
+client.unfocused        $color4     	$bg     		$fg			$bg				#00000000	
 client.urgent           $color1     	$color1     	$fg  		$color1       	$color1
 client.placeholder      $color4     	$color4     	$fg  		$color1      	$color4
 client.background       $bg
@@ -357,9 +357,9 @@ for_window [class="gnome-calculator"] floating enable
 exec --no-startup-id "xset s 300 120; xss-lock -n $HOME/.config/scripts/notify-sleep.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
 
 # Display & Output
-exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 
+#exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 
 
-exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
+#exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
 
 # Notification Manager
 #exec --no-startup-id /usr/bin/deadd-notification-center
