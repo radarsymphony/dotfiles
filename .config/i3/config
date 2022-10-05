@@ -261,7 +261,8 @@ focus_on_window_activation smart
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started
-set $fg #ffffff 
+#set $fg #ffffff 
+set_from_resource $fg i3wm.foreground #000000
 set_from_resource $bg i3wm.background #f0f0f0
 set_from_resource $color0 i3wm.color0 #f0f0f0
 set_from_resource $color1 i3wm.color1 #f0f0f0
@@ -273,11 +274,11 @@ set_from_resource $color6 i3wm.color6 #f0f0f0
 set_from_resource $color7 i3wm.color7 #f0f0f0
 
 # class                 border  		backgr. 		text 		indicator 		child_border
-client.focused          $color4     	$color4     	$fg  		$color1      	$color7
-client.focused_inactive $color4     	$bg     		$color1		$bg     		#00000000 
-client.unfocused        $color4     	$bg     		$fg			$bg				#00000000	
+client.focused          $color5     	$color5     	$bg  		$color3      	$color7
+client.focused_inactive $color5     	$bg     		$color1		$bg     		#00000000 
+client.unfocused        $color5     	$bg     		$fg			$bg				#00000000	
 client.urgent           $color1     	$color1     	$fg  		$color1       	$color1
-client.placeholder      $color4     	$color4     	$fg  		$color1      	$color4
+client.placeholder      $color5     	$color5     	$fg  		$color1      	$color5
 client.background       $bg
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -288,19 +289,20 @@ bar {
     tray_padding 4
     position bottom
     workspace_min_width 24
-    height 24
+    height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 
 	font pango:Noto Sans, Font Awesome 6 Free 12
 	i3bar_command i3bar --transparency
 	colors {
-		background #00000000 
-		separator $color1
+		background #00000000
+		statusline $fg
+		separator $color5
 		# class                 border  	backgr. 	text
-		focused_workspace       $color4     	$color4     	$fg
-		active_workspace	$bg		$color4		$fg
-		inactive_workspace	#00000000	#00000000	$fg
-		urgent_workspace        $color1     	$color1     	$fg
+		focused_workspace       $color5     $color5    	$bg
+		active_workspace		$color5		$color5		$fg
+		inactive_workspace		#00000000	#00000000	$fg
+		urgent_workspace        $color1    	$color1    	$bg
 	}
 }
 
@@ -310,19 +312,20 @@ bar {
     tray_output none
     position bottom
     workspace_min_width 24
-    height 25
+    height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config-monitor.toml
 
 	font pango:Noto Sans, Font Awesome 6 Free 12
 	i3bar_command i3bar --transparency
 	colors {
 		background #00000000 
-		separator $color1
+		statusline $fg
+		separator $color5
 		# class                 border  	backgr. 	text
-		focused_workspace       $color4     	$color4     	$fg
-		active_workspace	$bg		$color4		$fg
-		inactive_workspace	#00000000	#00000000	$fg
-		urgent_workspace        $color1     	$color1     	$fg
+        focused_workspace       $color5     $color5     $bg
+        active_workspace        $color5     $color5     $fg
+        inactive_workspace      #00000000   #00000000   $fg
+        urgent_workspace        $color1     $color1     $bg
 	}
     # mode hide
     # hidden_state hide

@@ -37,7 +37,7 @@ data.location=/home/grey/.task
 #include dark-gray-blue-256.theme
 #include solarized-dark-256.theme
 #include solarized-light-256.theme
-#include no-color.theme
+include no-color.theme
 
 uda.estimate.type=duration
 uda.estimate.label=Est
