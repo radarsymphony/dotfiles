@@ -362,7 +362,7 @@ exec --no-startup-id "xset s 300 120; xss-lock -n $HOME/.config/scripts/notify-s
 # Display & Output
 #exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 
 
-#exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
+exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
 
 # Notification Manager
 #exec --no-startup-id /usr/bin/deadd-notification-center

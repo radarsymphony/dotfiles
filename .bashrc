@@ -19,7 +19,7 @@ alias dotfile='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 ## Task & Time warrior
 alias tsum='timew summary :id :anno'
-alias tl='task priority.any: or +MONTH or +next'
+alias tl='task +PRIORITY or +MONTH or +next or +ACTIVE'
 
 ## Docker
 #alias ddbash='docker exec -it $( docker container ls --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}' | fzf | awk '{print $1}' ) bash'
