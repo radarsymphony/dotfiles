@@ -12,4 +12,4 @@ $HOME/.fehbg &
 
 wait $!
 
-/usr/bin/picom --experimental-backends -b
+/usr/bin/picom -b

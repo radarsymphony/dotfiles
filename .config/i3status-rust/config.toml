@@ -35,9 +35,11 @@ format_swap = "{swap_used_percents}"
 
 [[block]]
 block = "sound"
-driver = "auto"
+driver = "pulseaudio"
+device = "hw:1,0"
 format = "{volume}"
 on_click = "/usr/bin/pavucontrol"
+headphones_indicator = true
 
 [[block]]
 block = "backlight"

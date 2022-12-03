@@ -10,9 +10,6 @@
 ## Variables & Fonts
 ####################
 
-# Set Background Image Variable
-set $bgimage $HOME/.wallpaper/background4.jpg 
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws0 "0"
@@ -29,7 +26,8 @@ set $ws9 "9"
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-font pango:Noto Sans, Font Awesome 6 Free 12
+#font pango:Noto Sans, Font Awesome 6 Free 12
+font pango:Ubuntu, Font Awesome 6 Free 12
 
 ###############
 ## Key Mappings
@@ -148,7 +146,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws0
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
-bindsym $mod+p move workspace to output right
+#bindsym $mod+p move workspace to output right
+bindsym $mod+p move workspace to output down
 
 # Toggle between last two active workspaces
 bindsym $mod+w workspace back_and_forth
@@ -226,7 +225,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 ## Notifications
-bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-center)"
+#bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-center)"
 
 ## ZOOM --- Focus zoom window
 #for_window [class="zoom"] floating enable; move scratchpad
@@ -236,6 +235,7 @@ bindsym $mod+b exec --no-startup-id "kill -s USR1 $(pidof deadd-notification-cen
 for_window [class="zoom"] floating enable 
 #for_window [title="Zoom Meeting"] floating enable 
 no_focus [title="Zoom Meeting"]
+no_focus [title="Zoom - Free Account"]
 for_window [title="Zoom - Free Account"] floating enable 
 bindsym $mod+z [title="Zoom Meeting"] focus
 
@@ -252,7 +252,9 @@ for_window [class="Spotify"] move to workspace $ws2
 #for_window [class="Pavucontrol"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws5
 
-focus_on_window_activation smart
+#focus_on_window_activation smart
+focus_on_window_activation urgent
+focus_wrapping no
 
 # Appearance & Colour Scheme
 # Set colors from Xresources
@@ -274,9 +276,9 @@ set_from_resource $color6 i3wm.color6 #f0f0f0
 set_from_resource $color7 i3wm.color7 #f0f0f0
 
 # class                 border  		backgr. 		text 		indicator 		child_border
-client.focused          $color5     	$color5     	$bg  		$color3      	$color7
+client.focused          $fg	     		$color5     	$fg  		$color3      	$color7
 client.focused_inactive $color5     	$bg     		$color1		$bg     		#00000000 
-client.unfocused        $color5     	$bg     		$fg			$bg				#00000000	
+client.unfocused        $color5     	$bg		     	$color5		$bg				#00000000	
 client.urgent           $color1     	$color1     	$fg  		$color1       	$color1
 client.placeholder      $color5     	$color5     	$fg  		$color1      	$color5
 client.background       $bg
@@ -292,17 +294,17 @@ bar {
     height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 
-	font pango:Noto Sans, Font Awesome 6 Free 12
+	font pango:Ubuntu, Font Awesome 6 Free 12
 	i3bar_command i3bar --transparency
 	colors {
 		background #00000000
 		statusline $fg
-		separator $color5
+		separator $fg
 		# class                 border  	backgr. 	text
-		focused_workspace       $color5     $color5    	$bg
+		focused_workspace       $color5     $color5    	$fg
 		active_workspace		$color5		$color5		$fg
 		inactive_workspace		#00000000	#00000000	$fg
-		urgent_workspace        $color1    	$color1    	$bg
+		urgent_workspace        $color1    	$color1    	$fg
 	}
 }
 
@@ -315,17 +317,17 @@ bar {
     height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config-monitor.toml
 
-	font pango:Noto Sans, Font Awesome 6 Free 12
+	font pango:Ubuntu, Font Awesome 6 Free 12
 	i3bar_command i3bar --transparency
 	colors {
 		background #00000000 
 		statusline $fg
-		separator $color5
+		separator $fg
 		# class                 border  	backgr. 	text
-        focused_workspace       $color5     $color5     $bg
+        focused_workspace       $color5     $color5     $fg
         active_workspace        $color5     $color5     $fg
         inactive_workspace      #00000000   #00000000   $fg
-        urgent_workspace        $color1     $color1     $bg
+        urgent_workspace        $color1     $color1     $fg
 	}
     # mode hide
     # hidden_state hide
@@ -365,14 +367,11 @@ exec --no-startup-id "xset s 300 120; xss-lock -n $HOME/.config/scripts/notify-s
 exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
 
 # Notification Manager
-#exec --no-startup-id /usr/bin/deadd-notification-center
+exec --no-startup-id /usr/bin/deadd-notification-center
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
-# Bluetooth
-exec --no-startup-id /usr/bin/blueberry-tray
 
 # RedShift
 exec --no-startup-id /usr/bin/redshift-gtk
