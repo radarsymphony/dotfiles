@@ -51,7 +51,7 @@ bindsym $mod+Return exec kitty
 
 # Show or create the kitty scratchpad window.
 bindsym $mod+k exec --no-startup-id $HOME/.config/i3/bin/i3_scratchpad_show_or_create.sh 'quake-kitty' '/usr/bin/kitty /usr/bin/bash'
-for_window [con_mark="quake-kitty"] resize set 1200 800
+#for_window [con_mark="quake-kitty"] resize set 1200 800
 for_window [con_mark="quake-kitty"] move [absolute] position center
 
 # Add Scratchpad Controls
@@ -249,11 +249,12 @@ for_window [class="ferdium"] move to workspace $ws3
 #for_window [class="zoom"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws2
-#for_window [class="Pavucontrol"] move to workspace $ws2
+for_window [class="Pavucontrol"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws5
 
 #focus_on_window_activation smart
-focus_on_window_activation urgent
+#focus_on_window_activation urgent
+focus_on_window_activation none
 focus_wrapping no
 
 # Appearance & Colour Scheme
@@ -263,7 +264,6 @@ focus_wrapping no
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started
-#set $fg #ffffff 
 set_from_resource $fg i3wm.foreground #000000
 set_from_resource $bg i3wm.background #f0f0f0
 set_from_resource $color0 i3wm.color0 #f0f0f0
@@ -356,13 +356,7 @@ for_window [class="gnome-calculator"] floating enable
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-#exec --no-startup-id betterlockscreen -u $bgimage
-#exec --no-startup-id "xset 180 120; xss-lock -n $HOME/.config/scripts/ask-to-rest.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
-#exec --no-startup-id xss-lock --transfer-sleep-lock -- "$HOME/.config/scripts/lock.sh"
 exec --no-startup-id "xset s 300 120; xss-lock -n $HOME/.config/scripts/notify-sleep.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
-
-# Display & Output
-#exec_always --no-startup-id $HOME/.screenlayout/set-layout.sh 
 
 exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
 
@@ -375,9 +369,6 @@ exec --no-startup-id nm-applet
 
 # RedShift
 exec --no-startup-id /usr/bin/redshift-gtk
-
-# Password manager
-#exec --no-startup-id /usr/bin/keepassxc
 
 # Screenshot tool
 exec --no-startup-id /usr/bin/flameshot
