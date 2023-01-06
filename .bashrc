@@ -43,8 +43,17 @@ alias free='free -h'
 alias ls='ls -h --color=auto'
 alias ncdu='ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --exclude="/home/.snapshots" --exclude /proc'
 alias ssh='kitty +kitten ssh'
+alias temp='${EDITOR} $(mktemp)'
 alias top='htop'
 alias tree='tree -a'
+
+vim() {
+    if command -v /usr/bin/nvim > /dev/null; then
+        /usr/bin/nvim "${@}"
+    else
+        /usr/bin/vim "${@}"
+    fi
+}
 
 ## Dotfile Management
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

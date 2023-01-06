@@ -2,29 +2,24 @@
 let mapleader = ","
 
 " Setup side panel
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_browse_split = 0
-let g:netrw_winsize = 20
-let g:netrw_keepdir = 0
-let g:netrw_localcopydircmd = 'cp -r'
-
-" open files from netrw in a previous window, unless we're opening the current dir
-"if argv(0) ==# '.'
-"    let g:netrw_browse_split = 0
-"else
-"    let g:netrw_browse_split = 4
-"endif
+"let g:netrw_liststyle = 3
+"let g:netrw_banner = 0
+"let g:netrw_browse_split = 0
+"let g:netrw_winsize = 20
+"let g:netrw_keepdir = 0
+"let g:netrw_localcopydircmd = 'cp -r'
 
 " Assign toggle for side panel
-nnoremap <leader>f :Lexplore<CR>
-"nnoremap <leader>f :Explore<CR>
+nnoremap <leader>f :Explore<CR>
+
+" Use ALT-[hjkl] to select the active split! Colmak-modded
+nmap <silent> <leader>i :wincmd k<CR>
+nmap <silent> <leader>e :wincmd j<CR>
+nmap <silent> <leader>n :wincmd h<CR>
+nmap <silent> <leader>o :wincmd l<CR>
 
 " Set Compatibility 
 set nocompatible
-
-" automatically indent new lines
-set autoindent
 
 " Enable text Wrapping
 "set wrap
@@ -41,14 +36,17 @@ set ttyfast
 " Set tab spacing
 set tabstop=4
 
+" automatically indent new lines
+"set autoindent
+
 " replace tabs with spaces automatically
-set expandtab
+"set expandtab
 
 " Set Line Number
 set number relativenumber
 
 " Shortcuts to Toggle or add functionality
-map <leader>n :set number! relativenumber!<CR>
+map <leader>l :set number! relativenumber!<CR>
 
 " Import .vimrc.plug file
 if filereadable(expand("~/.vimrc.plug"))

@@ -50,8 +50,8 @@ bindsym Print exec /usr/bin/flameshot gui
 bindsym $mod+Return exec kitty 
 
 # Show or create the kitty scratchpad window.
-bindsym $mod+k exec --no-startup-id $HOME/.config/i3/bin/i3_scratchpad_show_or_create.sh 'quake-kitty' '/usr/bin/kitty /usr/bin/bash'
-#for_window [con_mark="quake-kitty"] resize set 1200 800
+bindsym $mod+k exec --no-startup-id $HOME/.config/i3/bin/i3_scratchpad_show_or_create.sh 'quake-kitty' '/usr/bin/kitty'
+for_window [con_mark="quake-kitty"] resize set 1200 800
 for_window [con_mark="quake-kitty"] move [absolute] position center
 
 # Add Scratchpad Controls
@@ -63,7 +63,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+l exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+l exec --no-startup-id "rofi -modi drun,run -show drun -theme ~/.config/rofi/launcher-config.rasi"
 bindsym $mod+Shift+m exec --no-startup-id "rofi -show window" 
 bindsym $mod+Mod1+m exec --no-startup-id "$HOME/.config/scripts/displays.sh; reload"
 
@@ -99,6 +99,7 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+#popup_during_fullscreen smart|ignore|leave_fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -199,7 +200,7 @@ mode "$mode_launcher" {
 	
 	bindsym b "exec --no-startup-id /usr/bin/firefox; mode default"
     	bindsym c "exec --no-startup-id /usr/bin/gnome-calculator; mode default"
-	bindsym e "exec --no-startup-id /usr/bin/code; mode default"
+	bindsym e "exec --no-startup-id /usr/bin/kitty /usr/bin/nvim; mode default"
     	bindsym f "exec --no-startup-id /usr/bin/thunar; mode default"
     	bindsym i "exec --no-startup-id /usr/bin/chromium --incognito; mode default"
 	bindsym m "exec --no-startup-id /usr/bin/ferdium; mode default"
@@ -246,16 +247,18 @@ bindsym $mod+z [title="Zoom Meeting"] focus
 
 for_window [class="firefox"] move to workspace $ws4
 for_window [class="ferdium"] move to workspace $ws3
-#for_window [class="zoom"] move to workspace $ws3
 for_window [class="Thunderbird"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws2
 for_window [class="Pavucontrol"] move to workspace $ws2
-for_window [class="Code"] move to workspace $ws5
+for_window [class="Code"] move to workspace $ws8
+for_window [class="obsidian"] move to workspace $ws5
+for_window [class="Toggl Desktop"] floating enable
 
 #focus_on_window_activation smart
-#focus_on_window_activation urgent
-focus_on_window_activation none
+focus_on_window_activation urgent
 focus_wrapping no
+
+popup_during_fullscreen leave_fullscreen
 
 # Appearance & Colour Scheme
 # Set colors from Xresources
