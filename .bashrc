@@ -37,15 +37,21 @@ export XLSX_FILE=TRUE
 ## ALIASES
 ## -------------------------------------------
 
+alias bashly='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/bashly'
+alias blog='cd $GITHUB_PATH/$GITHUB_USER/$GITHUB_SITE && /usr/bin/i3-msg -q layout tabbed && /usr/bin/kitty --detach /usr/bin/hugo server --environment staging --buildDrafts --navigateToChanged && /usr/bin/firefox --new-window localhost:1313 && nvim .'
 alias df='df -h'
 alias diff='diff --color'
 alias free='free -h'
+alias gh='cd $GITHUB_PATH/$GITHUB_USER'
 alias ls='ls -h --color=auto'
 alias ncdu='ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --exclude="/home/.snapshots" --exclude /proc'
 alias ssh='kitty +kitten ssh'
 alias temp='${EDITOR} $(mktemp)'
 alias top='htop'
 alias tree='tree -a'
+alias vld='cd /var/local/data/'
+alias vlds='cd /var/local/data/_system/'
+alias vldb='cd /var/local/db/'
 
 vim() {
     if command -v /usr/bin/nvim > /dev/null; then
