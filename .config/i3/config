@@ -44,6 +44,7 @@ bindsym $mod+x exec $HOME/.config/scripts/logout.sh
 
 # take screenshot
 bindsym Print exec /usr/bin/flameshot gui
+bindsym Shift+Print exec /usr/bin/flameshot gui --delay 3000
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
