@@ -2,6 +2,8 @@
 vim.g.mapleader = ","
 vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
 
+vim.keymap.set("n", "<leader>n", ":set number! relativenumber!<CR>")
+
 vim.keymap.set("v", "<M-i>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<M-e>", ":m '<-2<CR>gv=gv")
 
