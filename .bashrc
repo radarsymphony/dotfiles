@@ -38,7 +38,7 @@ export XLSX_FILE=TRUE
 ## -------------------------------------------
 
 alias bashly='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/bashly'
-alias blog='cd $GITHUB_PATH/$GITHUB_USER/$GITHUB_SITE && /usr/bin/i3-msg -q layout tabbed && /usr/bin/kitty --detach /usr/bin/hugo server --environment staging --buildDrafts --navigateToChanged && /usr/bin/firefox --new-window localhost:1313 && nvim .'
+alias blog='cd $GITHUB_PATH/$GITHUB_USER/$GITHUB_SITE && /usr/bin/i3-msg -q layout tabbed && /usr/bin/kitty --detach /usr/bin/hugo server --environment staging --buildDrafts --navigateToChanged && /usr/bin/firefox --new-window localhost:1313 && nvim ./content'
 alias df='df -h'
 alias diff='diff --color'
 alias free='free -h'
