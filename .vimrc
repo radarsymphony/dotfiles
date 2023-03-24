@@ -40,7 +40,7 @@ set tabstop=4
 "set autoindent
 
 " replace tabs with spaces automatically
-"set expandtab
+set expandtab
 
 " Set Line Number
 set number relativenumber

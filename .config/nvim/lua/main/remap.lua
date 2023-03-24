@@ -2,7 +2,7 @@
 vim.g.mapleader = ","
 vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
 
-vim.keymap.set("n", "<leader>n", ":set number! relativenumber!<CR>")
+vim.keymap.set("n", "<leader>l", ":set number! relativenumber!<CR>")
 
 vim.keymap.set("v", "<M-i>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<M-e>", ":m '<-2<CR>gv=gv")
@@ -17,8 +17,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
--- vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
--- vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 

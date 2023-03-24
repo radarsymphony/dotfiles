@@ -1,10 +1,16 @@
 //@theme "/usr/share/rofi/themes/sidebar.rasi"
 //@import "~/.cache/wal/colors-rofi-dark"
-@theme "~/.cache/wal/colors-rofi-dark.rasi"
+//@theme "~/.cache/wal/colors-rofi-dark.rasi"
+@theme "~/.config/rofi/rose-pine.rasi"
 
-* {
-	background: #671d0e;
+configuration {
+    show-icons: true;
+	drun-display-format:        " {name}";
 }
+
+//* {
+//	background: #1f1d2e;
+//}
 
 #element.selected.normal {
 	text-color: @background;

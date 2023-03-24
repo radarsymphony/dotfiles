@@ -14,6 +14,14 @@ return require('packer').startup(function(use)
 	}
 
     use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
+    --use({
+    --    'rose-pine/neovim',
+    --    as = 'rose-pine',
+    --    config = function()
+    --        require("rose-pine").setup()
+    --        vim.cmd('colorscheme rose-pine')
+    --    end
+    --})
 
 	-- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -53,9 +61,57 @@ return require('packer').startup(function(use)
     }
 
     -- install without yarn or npm
-    use({
+   use({
+        'prettier/vim-prettier',
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+   use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
+   -- use {
+   --     'chipsenkbeil/distant.nvim',
+   --     config = function()
+   --         require('distant').setup {
+   --             -- Applies Chip's personal settings to every machine you connect to
+   --             --
+   --             -- 1. Ensures that distant servers terminate with no connections
+   --             -- 2. Provides navigation bindings for remote directories
+   --             -- 3. Provides keybinding to jump into a remote file's parent directory
+   --             ['*'] = require('distant.settings').chip_default()
+   --         }
+   --     end
+   -- }
+
+   -- use {
+   --     "lewis6991/hover.nvim",
+   --     config = function()
+   --         require("hover").setup {
+   --             init = function()
+   --                 -- Require providers
+   --                 require("hover.providers.lsp")
+   --                 -- require('hover.providers.gh')
+   --                 -- require('hover.providers.gh_user')
+   --                 -- require('hover.providers.jira')
+   --                 require('hover.providers.man')
+   --                 require('hover.providers.dictionary')
+   --             end,
+   --             preview_opts = {
+   --                 border = nil
+   --             },
+   --             -- Whether the contents of a currently open hover window should be moved
+   --             -- to a :h preview-window when pressing the hover keymap.
+   --             preview_window = false,
+   --             title = true
+   --         }
+
+   --         -- Setup keymaps
+   --         vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+   --         vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
+   --     end
+   -- }
+
 end)
+

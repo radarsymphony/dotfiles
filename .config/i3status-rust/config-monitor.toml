@@ -1,12 +1,12 @@
+[theme]
 theme = "native"
-icons = "awesome5"
-
-[[block]]
-block = "external_ip"
-format = "{ip} {country_code}"
+[icons]
+icons = "awesome6"
 
 [[block]]
 block = "time"
 interval = 1
-format = "%a %b %e %R"
-on_click = "~/.config/scripts/calendar.sh"
+format = " $timestamp.datetime(f:'%a %b %e %R') " 
+[[block.click]]
+button = "left"
+cmd = "~/.config/scripts/calendar.sh"
