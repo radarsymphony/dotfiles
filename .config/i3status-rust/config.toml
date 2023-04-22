@@ -51,8 +51,8 @@ format = "$icon $mem_avail.eng(prefix:M)/$mem_total.eng(prefix:M) ($mem_total_us
 
 [[block]]
 block = "sound"
-driver = "pulseaudio"
-device = "hw:1,0"
+driver = "auto"
+device = "hw:2,0"
 headphones_indicator = true
 format = "$icon {$volume|}"
 [[block.click]] 

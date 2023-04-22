@@ -21,13 +21,13 @@ font pango:Ubuntu, Font Awesome 6 Free 12
 set $ws0 "0:"
 set $ws1 "1:"
 set $ws2 "2:"
-set $ws3 "3:"
+set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
-set $ws6 "6:"
+set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
-set $ws9 "9:"
+set $ws9 "9:"
 
 ###############
 ## Key Mappings
@@ -249,8 +249,8 @@ bindsym $mod+z [title="Zoom Meeting"] focus
 ####################
 
 for_window [class="firefox"] move to workspace $ws4
-for_window [class="ferdium"] move to workspace $ws3
-for_window [class="Thunderbird"] move to workspace $ws3
+for_window [class="ferdium"] move to workspace $ws6
+for_window [class="Thunderbird"] move to workspace $ws6
 for_window [class="Spotify"] move to workspace $ws2
 for_window [class="spt"] move to workspace $ws2
 for_window [class="Pavucontrol"] move to workspace $ws2
@@ -345,7 +345,7 @@ bar {
 }
 
 # Window Layout
-gaps inner 10
+gaps inner 0
 gaps outer 0
 for_window [all] border pixel 1 
 hide_edge_borders smart

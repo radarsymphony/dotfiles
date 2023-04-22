@@ -4,8 +4,8 @@ vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
 
 vim.keymap.set("n", "<leader>l", ":set number! relativenumber!<CR>")
 
-vim.keymap.set("v", "<M-i>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<M-e>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<M-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -18,7 +18,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+--vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
@@ -27,3 +27,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- makes the current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+-- Save and run the current file
+vim.keymap.set("n", "<M-R>", ":w <CR> :terminal %:p ")
+
+-- Use 'esc' when in "terminal" mode to go back to normal mode
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
