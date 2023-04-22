@@ -1,0 +1,69 @@
+##THEME ELEMENTS
+## https://man.archlinux.org/man/alsamixer.1#color
+## https://gist.github.com/int-e/25bd77d4e59531fad7d48bfaf1fc1046
+
+##mixer_frame Color of the box around the mixer
+#color mixer_frame black white
+
+##mixer_text Color of text at the top of the mixer
+color mixer_text default default
+
+##mixer_active Color of AlsaMixer heading
+#color mixer_active black white
+
+##ctl_frame Color of the frame around the mixer controls
+#color ctl_frame black white
+
+##ctl_mute Color indicating the mute state (MM)
+#color ctl_mute black white
+
+##ctl_nomute Color indicating the unmute state (00)
+#color ctl_nomute black white
+
+##ctl_capture Color of CAPTURE text
+#color ctl_capture black white
+
+##ctl_nocapture Color of disabled capture label
+#color ctl_nocapture black white
+
+##ctl_label Color of label underneath mixer controls
+color ctl_label yellow black dim
+
+##ctl_label_focus Color of label underneath focused mixer control
+color ctl_label_focus black yellow bold
+
+##ctl_mark_focus Color of <> marks beside focused mixer label
+#color ctl_mark_focus black white
+
+##ctl_bar_lo Color of lower volume bar
+#color ctl_bar_lo black white
+
+##ctl_bar_mi Color of middle volume bar
+#color ctl_bar_mi black white
+
+##ctl_bar_hi Color of top volume bar
+#color ctl_bar_hi black white
+
+##ctl_inactive Color for inactive control
+color ctl_inactive black white
+
+##ctl_label_inactive Color for inactive label
+color ctl_label_inactive default yellow
+
+##errormsg Color used for error message
+#color errormsg black white
+
+##infomsg Color used for information message
+#color infomsg black white
+
+##textbox Color used for textbox (user input)
+color textbox default default
+
+##textfield Color used for textbox
+color textfield default default
+
+##menu Color used for menu
+color menu default default
+
+##menu_selected Color used for selected entry in menu
+color menu_selected black yellow
