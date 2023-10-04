@@ -4,7 +4,7 @@ pkill picom &
 
 wait $!
 
-/usr/bin/wal -R &
+/usr/bin/wal -R -n -q &
 
 wait $!
 
