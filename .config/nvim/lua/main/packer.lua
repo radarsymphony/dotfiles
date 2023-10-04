@@ -13,15 +13,22 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-    use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
-    --use({
-    --    'rose-pine/neovim',
-    --    as = 'rose-pine',
-    --    config = function()
-    --        require("rose-pine").setup()
-    --        vim.cmd('colorscheme rose-pine')
-    --    end
-    --})
+    --use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
+    use({
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            require("rose-pine").setup({
+                highlight_groups = {
+                    ColorColumn = { bg = '' },
+
+                    -- Blend colours against the "base" background
+                    CursorLine = { bg = 'foam', blend = 30 },
+                }
+            })
+            vim.cmd('colorscheme rose-pine')
+        end
+    })
 
 	-- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -39,8 +46,8 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-
-	use {
+	
+    use {
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
 			-- LSP Support

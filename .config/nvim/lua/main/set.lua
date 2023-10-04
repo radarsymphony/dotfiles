@@ -28,7 +28,13 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+--vim.opt.colorcolumn = "80"
+
+-- vim.g.netrw_keepdir = 0
 
 -- Enter into insert mode when opening a terminal in nvim
 vim.api.nvim_exec([[ autocmd TermOpen * startinsert ]], false)
+
+-- Add 'spell' as spellchecker 
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
