@@ -52,7 +52,7 @@ bindsym $mod+Return exec kitty
 
 # Show or create the kitty scratchpad window.
 bindsym $mod+k exec --no-startup-id $HOME/.config/i3/bin/i3_scratchpad_show_or_create.sh 'quake-kitty' '/usr/bin/kitty'
-for_window [con_mark="quake-kitty"] resize set 1200 800
+for_window [con_mark="quake-kitty"] resize set 1600 800
 for_window [con_mark="quake-kitty"] move [absolute] position center
 
 # Add Scratchpad Controls
@@ -149,8 +149,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws0
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
-#bindsym $mod+p move workspace to output right
-bindsym $mod+p move workspace to output down
+bindsym $mod+p move workspace to output right
+#bindsym $mod+p move workspace to output down
 
 # Toggle between last two active workspaces
 bindsym $mod+w workspace back_and_forth
@@ -211,6 +211,7 @@ mode "$mode_launcher" {
 	bindsym z "exec --no-startup-id /usr/bin/zoom; mode default"
 
     # back to normal: Enter or Escape or $mod+p
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
@@ -222,10 +223,12 @@ bindsym $mod+m mode "$mode_launcher"
 #bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 # Use pactl to adjust volume in PulseAudio.
+set $MAIN_SINK alsa_output.pci-0000_00_1f.3.analog-stereo
+
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status; notify-send -e --expire-time=700 vol"
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume $MAIN_SINK +5% && $refresh_i3status; notify-send -e --expire-time=500 UP"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume $MAIN_SINK -5% && $refresh_i3status; notify-send -e --expire-time=500 DOWN"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $MAIN_SINK toggle && $refresh_i3status; notify-send -e --expire-time=800 TOGGLE MUTE"
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 ## Notifications
@@ -248,19 +251,23 @@ bindsym $mod+z [title="Zoom Meeting"] focus
 ## Windows & Display
 ####################
 
+for_window [class="spt"] move to workspace $ws2
+for_window [class="Spotify"] move to workspace $ws2
+for_window [title="alsamixer"] move to workspace $ws2
+for_window [class="Pavucontrol"] move to workspace $ws2
 for_window [class="firefox"] move to workspace $ws4
 for_window [class="ferdium"] move to workspace $ws6
 for_window [class="Thunderbird"] move to workspace $ws6
-for_window [class="Spotify"] move to workspace $ws2
-for_window [class="spt"] move to workspace $ws2
-for_window [class="Pavucontrol"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws8
 for_window [class="obsidian"] move to workspace $ws5
+
 for_window [class="Toggl Desktop"] floating enable
 
 #focus_on_window_activation smart
 focus_on_window_activation urgent
 focus_wrapping no
+
+default_orientation horizontal
 
 popup_during_fullscreen leave_fullscreen
 
@@ -305,9 +312,10 @@ bar {
     strip_workspace_numbers yes
 	i3bar_command i3bar --transparency
 	colors {
-		background #00000000
+		#background #00000000
+		background #19172490
 		statusline $fg
-		separator $fg
+		separator $color4
 		# class                 border  	backgr. 	text
 		focused_workspace       $color4     $color4    	$fg
 		active_workspace		$color4		$color4		$fg
@@ -330,9 +338,10 @@ bar {
     strip_workspace_numbers yes
 	i3bar_command i3bar --transparency
 	colors {
-		background #00000000 
+		#background #00000000 
+		background #19172490
 		statusline $fg
-		separator $fg
+		separator $color4
 		# class                 border  	backgr. 	text
         focused_workspace       $color4     $color4     $fg
         active_workspace        $color4     $color4     $fg
