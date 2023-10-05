@@ -21,7 +21,8 @@ export PATH="${PATH}:${HOME}/.local/bin"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 #export TERM=xterm-256color
-export TERM=xterm-kitty
+
+export HISTTIMEFORMAT="%F %T "
 
 ## Taskwarrior & Timewarrior
 export XLSX_FILE=TRUE
@@ -46,14 +47,16 @@ alias free='free -h'
 alias ghsrc='cd $GITHUB_PATH/$GITHUB_USER'
 alias ls='ls -h --color=auto'
 alias ncdu='ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --exclude="/home/.snapshots" --exclude /proc'
-alias ssh='kitty +kitten ssh'
+[ "$TERM" == "xterm-kitty" ] && \
+    alias ssh='kitty +kitten ssh'
 alias structurizr='docker run -it --rm -p 8081:8080 -v "$PWD:/usr/local/structurizr" -v "$PWD/../_common:/usr/local/_common" structurizr/lite'
 alias temp='${EDITOR} $(mktemp)'
-alias top='htop'
+alias top='btop'
 alias tree='tree -a'
 alias vld='cd /var/local/data/'
 alias vlds='cd /var/local/data/_system/'
 alias vldb='cd /var/local/db/'
+alias wttr='curl wttr.in/?format=+%c+%f+%w+%p+%h && echo""'
 
 vi() {
     if command -v /usr/bin/nvim > /dev/null; then
@@ -102,6 +105,14 @@ scan() {
 ## Create a popup timer
 pom() {
     sleep "${1:-30m}" && zenity --warning --width=400 --height=200 --text="\n\n\n${2:-Times Up! Review your tasks...}" --ok-label="Ok" 
+}
+
+dcshas() {
+    docker inspect --format '{{.RepoDigests}}' $( docker compose images --quiet | xargs ) | sed -E 's/(\[|\])//g'
+}
+
+dstats() {
+    docker stats $( docker container ls --format '{{.Names}}' | grep "${1}" | xargs )
 }
 
 ## CUSTOMIZE TERMINAL
