@@ -1,7 +1,10 @@
+[1m[33m -> [0m[0mAvoid running yay as root/sudo.
 a52dec
 acpi_call
 adobe-source-sans-fonts
 alsa-utils
+android-udev
+anki
 arandr
 arch-install-scripts
 aspell
@@ -51,6 +54,7 @@ docker-compose
 dtc
 edk2-ovmf
 efibootmgr
+electron27-bin
 f2fs-tools
 faad2
 fakeroot
@@ -72,6 +76,7 @@ glibmm
 glslang
 glu
 gnome-calculator
+gnome-disk-utility
 gnome-keyring
 gnome-themes-extra
 gnu-free-fonts
@@ -101,6 +106,7 @@ i3status
 i3status-rust
 imagemagick
 inetutils
+inotify-info-git
 intel-ucode
 iperf3
 iptables-nft
@@ -108,12 +114,11 @@ iw
 java-environment-common
 java-runtime-common
 jc
-jdk-openjdk
 jfsutils
 jq
 jre-openjdk
-jre-openjdk-headless
 jxrlib
+kdeconnect
 keepassxc
 keyd
 kind-bin
@@ -216,6 +221,7 @@ nilfs-utils
 nm-connection-editor
 nmap
 nmon
+nodejs
 noto-fonts-emoji
 npm
 ntfs-3g
@@ -353,11 +359,13 @@ tree
 try
 ttf-caladea
 ttf-carlito
+ttf-comfortaa
 ttf-dejavu
 ttf-droid
 ttf-fluentui-system-icons
 ttf-font-awesome
 ttf-hack
+ttf-jetbrains-mono
 ttf-liberation
 ttf-opensans
 ttf-roboto
@@ -379,6 +387,7 @@ virt-viewer
 visual-studio-code-bin
 vlc
 vnstat
+watchman-bin
 wget
 which
 wmctrl
@@ -389,6 +398,7 @@ xbanish
 xclip
 xcursor-themes
 xdg-user-dirs
+xf86-input-synaptics
 xfce4-settings
 xmlsec
 xorg-mkfontscale

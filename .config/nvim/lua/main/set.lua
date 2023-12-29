@@ -30,7 +30,7 @@ vim.opt.updatetime = 50
 
 --vim.opt.colorcolumn = "80"
 
--- vim.g.netrw_keepdir = 0
+--vim.g.netrw_keepdir = 0
 
 -- Enter into insert mode when opening a terminal in nvim
 vim.api.nvim_exec([[ autocmd TermOpen * startinsert ]], false)

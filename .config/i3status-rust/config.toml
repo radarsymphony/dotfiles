@@ -53,7 +53,7 @@ format = "$icon $mem_avail.eng(prefix:M)"
 [[block]]
 block = "sound"
 driver = "alsa"
-device = "hw:1"
+device = "hw:0"
 natural_mapping = true
 max_vol = 75
 step_width = 5
@@ -65,6 +65,7 @@ cmd = "/usr/bin/kitty /usr/bin/alsamixer"
 
 [[block]]
 block = "backlight"
+invert_icons = true
 
 [[block]]
 block = "battery"
@@ -81,7 +82,12 @@ good = 60
 [[block]]
 block = "external_ip"
 interval = 3600
-format = " $ip $country_name "
+#format = " $ip $country_name $country_flag "
+format = " $country_name $country_flag "
+[[block.click]]
+button = "left"
+cmd = "~/.config/scripts/external_ip.sh"
+#cmd = "/bin/sh -c 'zenity --info --text=$(curl ifconfig.me/ip)'"
 
 [[block]]
 block = "time"

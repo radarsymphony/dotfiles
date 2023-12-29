@@ -52,7 +52,7 @@ bindsym $mod+Return exec kitty
 
 # Show or create the kitty scratchpad window.
 bindsym $mod+k exec --no-startup-id $HOME/.config/i3/bin/i3_scratchpad_show_or_create.sh 'quake-kitty' '/usr/bin/kitty'
-for_window [con_mark="quake-kitty"] resize set 1600 800
+for_window [con_mark="quake-kitty"] resize set 1200 800
 for_window [con_mark="quake-kitty"] move [absolute] position center
 
 # Add Scratchpad Controls
@@ -359,7 +359,7 @@ gaps outer 0
 for_window [all] border pixel 1 
 hide_edge_borders smart
 smart_gaps on
-floating_maximum_size 1500 x 900
+#floating_maximum_size 1500 x 900
 for_window [window_role="pop-up"] floating enable
 #no_focus [window_role="pop-up"]
 for_window [window_role="task_dialog"] floating enable

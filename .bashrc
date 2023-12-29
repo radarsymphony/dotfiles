@@ -21,6 +21,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 #export TERM=xterm-256color
+export HOSTNAME="$(hostname -s || echo "nohostname" )"
 
 export HISTTIMEFORMAT="%F %T "
 
@@ -46,9 +47,10 @@ alias diff='diff --color'
 alias free='free -h'
 alias ghsrc='cd $GITHUB_PATH/$GITHUB_USER'
 alias ls='ls -h --color=auto'
-alias ncdu='ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --exclude="/home/.snapshots" --exclude /proc'
+alias ncdu='sudo ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --exclude="/home/.snapshots" --exclude /proc'
 [ "$TERM" == "xterm-kitty" ] && \
     alias ssh='kitty +kitten ssh'
+alias router='\ssh -i ~/.ssh/id_rsa root@192.168.1.1'
 alias structurizr='docker run -it --rm -p 8081:8080 -v "$PWD:/usr/local/structurizr" -v "$PWD/../_common:/usr/local/_common" structurizr/lite'
 alias temp='${EDITOR} $(mktemp)'
 alias top='btop'
@@ -56,7 +58,7 @@ alias tree='tree -a'
 alias vld='cd /var/local/data/'
 alias vlds='cd /var/local/data/_system/'
 alias vldb='cd /var/local/db/'
-alias wttr='curl wttr.in/?format=+%c+%f+%w+%p+%h && echo""'
+alias wttr='curl wttr.in/Victoria+Canada?format=+%c+%f+%w+%p+%h && echo""'
 
 vi() {
     if command -v /usr/bin/nvim > /dev/null; then
@@ -81,6 +83,7 @@ alias tt='taskwarrior-tui'
 
 ## Docker
 #alias dbash='docker exec -it $( docker container ls --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}' | fzf | awk '{print $1}' ) bash'
+alias dpss='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"'
 
 ## FUNCTIONS
 ## -------------------------------------------
@@ -113,6 +116,10 @@ dcshas() {
 
 dstats() {
     docker stats $( docker container ls --format '{{.Names}}' | grep "${1}" | xargs )
+}
+
+revdns() {
+    while read -r file; do echo $file | tr '.' '\n' | tac | xargs | tr ' ' '.' ; done < <(ls "${1:-.}") | sort
 }
 
 ## CUSTOMIZE TERMINAL
@@ -153,6 +160,8 @@ fi
 #
 #    PS1+="$ "
 #}
+
+[[ $- = *i* ]] && [[ -e /usr/bin/liquidprompt ]] && source /usr/bin/liquidprompt
 
 ## Create a landing page for Bash
 [[ -x $(command -v pfetch) ]] && pfetch
