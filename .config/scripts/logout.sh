@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 # Manage logout with rofi
-option=$( echo -e "lock screen\nsuspend\nreboot\nlogout\npoweroff" | rofi -width 200 -dmenu -p "Select Power Option" )
+option=$( echo -e "lock screen\nsuspend\nhibernate\nreboot\nlogout\npoweroff" | rofi -width 200 -dmenu -p "Select Power Option" )
 case $option in
     'lock screen')
 	$HOME/.config/scripts/lock.sh
         ;;
     suspend)
-        /usr/bin/systemctl suspend #-then-hibernate
+        #/usr/bin/systemctl suspend #-then-hibernate
+        /usr/bin/systemctl suspend-then-hibernate
+        ;;
+    hibernate)
+        #/usr/bin/systemctl suspend #-then-hibernate
+        /usr/bin/systemctl hibernate
         ;;
     reboot)
         /usr/bin/systemctl reboot

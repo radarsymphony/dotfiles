@@ -20,6 +20,7 @@ fi
 export PATH="${PATH}:${HOME}/.local/bin"
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export GRAVEYARD="${HOME}/.local/share/Trash"
 #export TERM=xterm-256color
 export HOSTNAME="$(hostname -s || echo "nohostname" )"
 
@@ -41,6 +42,7 @@ export XLSX_FILE=TRUE
 
 alias bashly='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/bashly'
 alias blog='cd $GITHUB_PATH/$GITHUB_USER/$GITHUB_SITE && /usr/bin/i3-msg -q layout tabbed && /usr/bin/kitty --detach /usr/bin/hugo server --environment staging --buildDrafts --navigateToChanged && /usr/bin/firefox --new-window localhost:1313 && nvim ./content'
+#alias cat='/usr/bin/bat'
 alias kitty-clone='clone-in-kitty --type=os-window'
 alias df='df -h'
 alias diff='diff --color'
@@ -51,9 +53,10 @@ alias ncdu='sudo ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --excl
 [ "$TERM" == "xterm-kitty" ] && \
     alias ssh='kitty +kitten ssh'
 alias router='\ssh -i ~/.ssh/id_rsa root@192.168.1.1'
+alias ssh-vpn-etude='\ssh -i ~/.ssh/id_rsa -J root@etude.vpn.knightsdata.com grey@192.168.1.111'
+alias rsync='rsync -avXx'
 alias structurizr='docker run -it --rm -p 8081:8080 -v "$PWD:/usr/local/structurizr" -v "$PWD/../_common:/usr/local/_common" structurizr/lite'
 alias temp='${EDITOR} $(mktemp)'
-alias top='btop'
 alias tree='tree -a'
 alias vld='cd /var/local/data/'
 alias vlds='cd /var/local/data/_system/'
@@ -120,6 +123,32 @@ dstats() {
 
 revdns() {
     while read -r file; do echo $file | tr '.' '\n' | tac | xargs | tr ' ' '.' ; done < <(ls "${1:-.}") | sort
+}
+
+blue() {
+    local usage="${FUNCNAME[0]} [ on | off | connect | disconnect | status ]"
+
+    [[ -z "${1}" ]] && echo "${usage}" && return
+    [[ "${1}" != on && "${1}" != off && "${1}" != connect && "${1}" != disconnect && "${1}" != status ]] && echo "${usage}" && return
+
+    case "${1}" in
+        on | connect )
+            bluetoothctl power on
+            device=$(bluetoothctl devices | fzf | cut -d" " -f2 | xargs)
+            bluetoothctl info "${device}" | grep -q "Connected: no" && bluetoothctl connect "${device}"
+            #bluetoothctl devices Connected | cut -d" " -f3-
+            ;;
+        off | disconnect )
+            bluetoothctl disconnect
+            bluetoothctl power off
+            ;;
+        status )
+            bluetoothctl info || bluetoothctl show
+            ;;
+        *)
+            echo "${usage}" && return
+        ;;
+    esac
 }
 
 ## CUSTOMIZE TERMINAL

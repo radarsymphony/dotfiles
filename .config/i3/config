@@ -67,7 +67,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+l exec --no-startup-id "rofi -modi drun,run -show drun -theme ~/.config/rofi/launcher-config.rasi"
 bindsym $mod+l exec --no-startup-id "rofi -modi drun,run -show drun"
 bindsym $mod+Shift+m exec --no-startup-id "rofi -show window" 
-bindsym $mod+Mod1+m exec --no-startup-id "$HOME/.config/scripts/displays.sh; reload"
+bindsym $mod+Mod1+m exec --no-startup-id "$HOME/.config/scripts/autorandr-rofi.sh"
 
 # change focus
 bindsym $mod+n focus left
@@ -184,8 +184,8 @@ mode "resize" {
         bindsym Right resize grow width 10 px or 10 ppt
 
         # Resize the Gaps
-        bindsym KP_Add gaps inner all plus 10 
-        bindsym KP_Subtract gaps inner all minus 10
+        bindsym KP_Add gaps inner all plus 5
+        bindsym KP_Subtract gaps inner all minus 5
         bindsym 0 gaps inner all set 0
         bindsym 9 gaps inner all set 40 
 
@@ -240,7 +240,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #assign [class='zoom'] output primary
 #bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
 for_window [class="zoom"] floating enable 
-#for_window [title="Zoom Meeting"] floating enable 
+no_focus [class="zoom"]
+for_window [title="Zoom Meeting"] floating enable 
 no_focus [title="Zoom Meeting"]
 no_focus [title="Zoom - Free Account"]
 for_window [title="Zoom - Free Account"] floating enable 
@@ -289,8 +290,11 @@ set_from_resource $color5 i3wm.color5 #f0f0f0
 set_from_resource $color6 i3wm.color6 #f0f0f0
 set_from_resource $color7 i3wm.color7 #f0f0f0
 
+# Set variable for bar background to control "inactive" workspaces, etc
+set $bar_bg #1917244D
+
 # class                 border  		backgr. 		text 		indicator 		child_border
-client.focused          $fg	     		$color4     	$fg  		$color3      	$color7
+client.focused          $color4	     	$color4     	$fg  		$color3      	$color7
 client.focused_inactive $color4     	$bg     		$color1		$bg     		#00000000 
 client.unfocused        $color4     	$bg		     	$color4		$bg				#00000000	
 client.urgent           $color1     	$color1     	$fg  		$color1       	$color1
@@ -304,6 +308,7 @@ bar {
     output primary
     tray_padding 4
     position bottom
+    mode dock
     workspace_min_width 26
     height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
@@ -313,13 +318,13 @@ bar {
 	i3bar_command i3bar --transparency
 	colors {
 		#background #00000000
-		background #19172490
+		background $bar_bg
 		statusline $fg
 		separator $color4
 		# class                 border  	backgr. 	text
 		focused_workspace       $color4     $color4    	$fg
 		active_workspace		$color4		$color4		$fg
-		inactive_workspace		#00000000	#00000000	$fg
+		inactive_workspace		$bar_bg	    $bar_bg	    $fg
 		urgent_workspace        $color1    	$color1    	$fg
 	}
 }
@@ -330,6 +335,7 @@ bar {
     tray_output none
     tray_padding 4
     position bottom
+    mode dock
     workspace_min_width 26
     height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config-monitor.toml
@@ -338,14 +344,13 @@ bar {
     strip_workspace_numbers yes
 	i3bar_command i3bar --transparency
 	colors {
-		#background #00000000 
-		background #19172490
+		background $bar_bg
 		statusline $fg
 		separator $color4
 		# class                 border  	backgr. 	text
         focused_workspace       $color4     $color4     $fg
         active_workspace        $color4     $color4     $fg
-        inactive_workspace      #00000000   #00000000   $fg
+		inactive_workspace		$bar_bg	    $bar_bg	    $fg
         urgent_workspace        $color1     $color1     $fg
 	}
     # mode hide
@@ -377,7 +382,11 @@ for_window [class="gnome-calculator"] floating enable
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id "xset s 300 120; xss-lock -n $HOME/.config/scripts/notify-sleep.sh --transfer-sleep-lock -- $HOME/.config/scripts/lock.sh"
 
-exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh
+# Launch pywal, fehbg, and picom compositor
+exec_always --no-startup-id $HOME/.config/scripts/fix-display.sh 
+
+# autorandr
+exec --no-startup-id /usr/bin/autorandr
 
 # Notification Manager
 exec --no-startup-id /usr/bin/deadd-notification-center
@@ -395,3 +404,5 @@ exec --no-startup-id /usr/bin/flameshot
 # xbanish to hide mouse cursor when typing
 exec --no-startup-id /usr/bin/xbanish -i $mod -s
 
+# KDEConnect 
+exec --no-startup-id /usr/bin/kdeconnect-indicator
