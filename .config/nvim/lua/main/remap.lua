@@ -1,6 +1,15 @@
 -- Copied from thePrimeagen: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/remap.lua
 vim.g.mapleader = ","
+
 vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
+--Toggle netrw if it's not already open or go back to :last file if it is open
+-- vim.keymap.set("n", "<leader>f", function()
+--     if vim.bo.filetype == "netrw" then
+--         vim.cmd("last")
+--     else
+--         vim.cmd("Ex")
+--     end
+-- end) 
 
 -- Toggle line numbers
 vim.keymap.set("n", "<leader>l", ":set number! relativenumber!<CR>")

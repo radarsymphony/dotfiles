@@ -43,6 +43,7 @@ export XLSX_FILE=TRUE
 alias bashly='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/bashly'
 alias blog='cd $GITHUB_PATH/$GITHUB_USER/$GITHUB_SITE && /usr/bin/i3-msg -q layout tabbed && /usr/bin/kitty --detach /usr/bin/hugo server --environment staging --buildDrafts --navigateToChanged && /usr/bin/firefox --new-window localhost:1313 && nvim ./content'
 #alias cat='/usr/bin/bat'
+alias code='/usr/bin/neovide'
 alias kitty-clone='clone-in-kitty --type=os-window'
 alias df='df -h'
 alias diff='diff --color'
@@ -64,8 +65,10 @@ alias vldb='cd /var/local/db/'
 alias wttr='curl wttr.in/Victoria+Canada?format=+%c+%f+%w+%p+%h && echo""'
 
 vi() {
+    #if command -v /usr/bin/neovide > /dev/null; then
+    #    /usr/bin/neovide "${@}"
     if command -v /usr/bin/nvim > /dev/null; then
-        /usr/bin/nvim "${@}"
+       /usr/bin/nvim "${@}"
     elif command -v /usr/bin/vim > /dev/null; then
         /usr/bin/vim "${@}"
     elif command -v /usr/bin/vi > /dev/null; then
