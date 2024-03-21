@@ -12,6 +12,7 @@ WRONG='#880000bb'
 VERIFYING='#00564dE6'
 
 i3lock \
+--nofork \
 --lock-text="Locking..." \
 --noinput-text="Empty" \
 --wrong-text="Try again" \
