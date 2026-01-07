@@ -14,21 +14,21 @@ return require('packer').startup(function(use)
     }
 
     --use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
-    use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            require("rose-pine").setup({
-                highlight_groups = {
-                    ColorColumn = { bg = '' },
+    --use({
+    --    'rose-pine/neovim',
+    --    as = 'rose-pine',
+    --    config = function()
+    --        require("rose-pine").setup({
+    --            highlight_groups = {
+    --                ColorColumn = { bg = '' },
 
-                    -- Blend colours against the "base" background
-                    CursorLine = { bg = 'foam', blend = 30 },
-                }
-            })
-            vim.cmd('colorscheme rose-pine')
-        end
-    })
+    --                -- Blend colours against the "base" background
+    --                CursorLine = { bg = 'foam', blend = 30 },
+    --            }
+    --        })
+    --        vim.cmd('colorscheme rose-pine')
+    --    end
+    --})
 
     -- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})

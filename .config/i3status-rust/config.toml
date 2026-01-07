@@ -53,7 +53,7 @@ format = "$icon $mem_avail.eng(prefix:M)"
 [[block]]
 block = "sound"
 driver = "alsa"
-device = "hw:2"
+device = "hw:1"
 natural_mapping = true
 max_vol = 75
 step_width = 5

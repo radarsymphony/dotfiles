@@ -14,7 +14,7 @@
 # is used in the bar {} block below.
 #font pango:monospace 8
 #font pango:Noto Sans, Font Awesome 6 Free 12
-font pango:Ubuntu, Font Awesome 6 Free 12
+font pango:Ubuntu, Font Awesome 7 Free 12
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -239,14 +239,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #for_window [title="Zoom Meeting"] mark zoom_meeting
 #assign [class='zoom'] output primary
 #bindsym $mod+z [con_mark="zoom_meeting"] scratchpad show
-for_window [class="zoom"] floating enable 
+bindsym $mod+z [title="Meeting"] focus
+for_window [class="zoom"] floating enable
+for_window [title="Meeting"] floating disable
+for_window [title="Zoom Workplace - Free account"] floating enable
 no_focus [class="zoom"]
-for_window [title="Zoom Meeting"] floating enable 
-no_focus [title="Zoom Meeting"]
-no_focus [title="Zoom - Free Account"]
-for_window [title="Zoom - Free Account"] floating enable 
-bindsym $mod+z [title="Zoom Meeting"] focus
-
 
 ####################
 ## Windows & Display
@@ -313,7 +310,7 @@ bar {
     height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
 
-	#font pango:Ubuntu, Font Awesome 6 Free 12
+    font pango:Ubuntu, Font Awesome 7 Free 12
     strip_workspace_numbers yes
 	i3bar_command i3bar --transparency
 	colors {
@@ -324,7 +321,7 @@ bar {
 		# class                 border  	backgr. 	text
 		focused_workspace       $color4     $color4    	$fg
 		active_workspace		$color4		$color4		$fg
-		inactive_workspace		$bar_bg	    $bar_bg	    $fg
+		inactive_workspace		$bg		    $bg		    $color3
 		urgent_workspace        $color1    	$color1    	$fg
 	}
 }
@@ -340,7 +337,7 @@ bar {
     height 26
     status_command /usr/bin/i3status-rs $HOME/.config/i3status-rust/config-monitor.toml
 
-	#font pango:Ubuntu, Font Awesome 6 Free 12
+    font pango:Ubuntu, Font Awesome 7 Free 12
     strip_workspace_numbers yes
 	i3bar_command i3bar --transparency
 	colors {
@@ -348,10 +345,10 @@ bar {
 		statusline $fg
 		separator $color4
 		# class                 border  	backgr. 	text
-        focused_workspace       $color4     $color4     $fg
-        active_workspace        $color4     $color4     $fg
-		inactive_workspace		$bar_bg	    $bar_bg	    $fg
-        urgent_workspace        $color1     $color1     $fg
+		focused_workspace       $color4     $color4    	$fg
+		active_workspace		$color4		$color4		$fg
+		inactive_workspace		$bg		    $bg		    $color3
+		urgent_workspace        $color1    	$color1    	$fg
 	}
     # mode hide
     # hidden_state hide
@@ -359,9 +356,9 @@ bar {
 }
 
 # Window Layout
-gaps inner 0
+gaps inner 10
 gaps outer 0
-for_window [all] border pixel 1 
+for_window [all] border pixel 2 
 hide_edge_borders smart
 smart_gaps on
 #floating_maximum_size 1500 x 900

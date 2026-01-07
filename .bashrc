@@ -17,10 +17,10 @@ fi
 ## -------------------------------------------
 
 ## Exported Variables
-export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}"
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export GRAVEYARD="${HOME}/.local/share/Trash"
+#export GRAVEYARD="${HOME}/.local/share/Trash"
 #export TERM=xterm-256color
 export HOSTNAME="$(hostname -s || echo "nohostname" )"
 
@@ -55,6 +55,7 @@ alias ncdu='sudo ncdu --exclude="/.snapshots" --exclude="/var/.snapshots" --excl
     alias ssh='kitty +kitten ssh'
 alias router='\ssh -i ~/.ssh/id_rsa root@192.168.1.1'
 alias ssh-vpn-etude='\ssh -i ~/.ssh/id_rsa -J root@etude.vpn.knightsdata.com grey@192.168.1.111'
+alias rip='rip --graveyard ~/.local/share/Trash'
 alias rsync='rsync -avXx'
 alias structurizr='docker run -it --rm -p 8081:8080 -v "$PWD:/usr/local/structurizr" -v "$PWD/../_common:/usr/local/_common" structurizr/lite'
 alias temp='${EDITOR} $(mktemp)'
